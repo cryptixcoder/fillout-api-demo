@@ -8,7 +8,7 @@ function App() {
   const [response, setResponse] = useState<string|null>(null);
 
   const fetchData = async () => {
-    const url = `http://localhost:3000/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters)}`;
+    const url = `${process.env.API_ENDPOINT}/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters)}`;
     try {
       const res = await fetch(url, {
         method: 'GET',
