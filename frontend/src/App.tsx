@@ -8,7 +8,7 @@ function App() {
   const [response, setResponse] = useState<string|null>(null);
 
   const fetchData = async () => {
-    const url = `/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters)}`;
+    const url = `http://localhost:3000/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters.trim())}`;
     try {
       const res = await fetch(url, {
         method: 'GET',
@@ -20,7 +20,7 @@ function App() {
       setResponse(JSON.stringify(data, null, 2));
     } catch (error) {
       console.error("Error fetching data:", error);
-    }
+    } 
   }
 
   return (

@@ -6,9 +6,10 @@ import { applyFilters } from '../utils/filters'
 export const fetchFilteredResponses = async (req: Request, res: Response) => {
     const { formId } = req.params;
     const { page, per_page, filters } = req.query; 
-    const parsedFilters: ResponseFilterType = filters ? JSON.parse(filters as string): [];
     
     try {
+        const parsedFilters: ResponseFilterType = filters ? JSON.parse(filters as string): [];
+    
         const { data } = await FilloutClient.get(`/forms/${formId}/submissions`);
 
         const filteredResponses = applyFilters(data.responses, parsedFilters);
