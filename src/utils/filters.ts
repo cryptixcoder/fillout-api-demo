@@ -1,9 +1,9 @@
-import { ResponseFilterType } from '../types'
+import { ResponseFilterType, QuestionType } from '../types'
 
 export const applyFilters = (responses: any[], filters: ResponseFilterType) => {
     return responses.filter(response => {
         return filters.every(filter => {
-            const question = response.questions.find(q => q.id === filter.id);
+            const question = response.questions.find((q: QuestionType) => q.id === filter.id);
             if (!question) return false;
 
             switch (filter.condition) {
