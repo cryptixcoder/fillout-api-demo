@@ -8,7 +8,7 @@ if (!token) {
 }
 
 const client = axios.create({
-    baseURL: "https://api.fillout.com/v1",
+    baseURL: "https://api.fillout.com/v1/api",
     headers: {
         'Content-Type': 'application/json'
     }
