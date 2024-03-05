@@ -8,13 +8,12 @@ function App() {
   const [response, setResponse] = useState<string|null>(null);
 
   const fetchData = async () => {
-    const url = `${process.env.API_ENDPOINT}/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters)}`;
+    const url = `/api/cLZojxk94ous/filteredResponses?filters=${encodeURIComponent(filters)}`;
     try {
       const res = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Include other headers as required
         },
       });
       const data = await res.json();
