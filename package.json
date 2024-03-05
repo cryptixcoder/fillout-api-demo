@@ -9,7 +9,7 @@
   "scripts": {
     "frontend-install": "cd frontend && npm install",
     "frontend-build": "npm run frontend-install && cd frontend && npm run build",
-    "postinstall": "npm run build-frontend",
+    "postinstall": "npm run frontend-build",
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "npx tsx watch src/app.ts"
