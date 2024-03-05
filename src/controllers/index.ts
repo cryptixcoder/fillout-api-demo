@@ -5,8 +5,12 @@ import { applyFilters } from '../utils/filters'
 
 export const fetchFilteredResponses = async (req: Request, res: Response) => {
     const { formId } = req.params;
-    const { page, per_page, filters } = req.query; 
-    
+
+    const offset = parseInt(req.query.offset as string, 10) || 0;
+    const limit = parseInt(req.query.limit as string, 10) || 5;
+    const filters = req.query.filters;
+
+
     try {
         const parsedFilters: ResponseFilterType = filters ? JSON.parse(filters as string): [];
     
@@ -14,11 +18,13 @@ export const fetchFilteredResponses = async (req: Request, res: Response) => {
 
         const filteredResponses = applyFilters(data.responses, parsedFilters);
 
+        const paginatedResponses = filteredResponses.slice(offset, offset + limit);
+
         res.json({
             ...data,
-            responses: filteredResponses,
+            responses: paginatedResponses,
             totalResponses: filteredResponses.length,
-            pageCount: Math.ceil(filteredResponses.length / (per_page ? parseInt(per_page as string) : 10))
+            pageCount: Math.ceil(filteredResponses.length / limit)
         });
     }
     catch(error) {
